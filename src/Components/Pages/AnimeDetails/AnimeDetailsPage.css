@@ -1,5 +1,48 @@
 .page .summary {
     background-color: #212021;
-    height: 100px;
+    display: grid;
+    grid-template-columns: 230px 1fr;
     margin-top: 20px;
+    padding: 20px;
+    gap: 20px;
+}
+
+.page .summary img {
+    width: 100%;
+    border-radius: 20px;
+}
+
+.summary .description h1 {
+    color: #fff;
+}
+
+.summary .description .year {
+    color: #706f70;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.summary .description p {
+    color: #fff;
+}
+
+.summary .description .score {
+    float: right;
+    font-size: 14px;
+}
+
+ul.genres {
+    padding: 0;
+    list-style-type: none;
+}
+
+ul.genres li {
+    background-color: #e7ad3c;
+    display: inline-block;
+    padding: 5px 15px;
+    color: #fff;
+    margin-right: 10px;
+    font-size: 14px;
+    border-radius: 5px;
+    font-weight: 500;
 }

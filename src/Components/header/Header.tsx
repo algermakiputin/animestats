@@ -1,5 +1,6 @@
 import React from "react";
 import './Header.css';
+import { Link } from 'react-router-dom'
 
 class Header extends React.Component {
 
@@ -14,7 +15,9 @@ class Header extends React.Component {
                         <div className="nav-mobile"><a id="navbar-toggle" href="#!"><span></span></a></div>
                         <ul className="nav-list">
                             <li>
-                                <a href="#!" className="active">Home</a>
+                                <Link to={'/'} >
+                                    Home
+                                </Link>
                             </li> 
                             <li>
                                 <a href="#!">Top List</a>

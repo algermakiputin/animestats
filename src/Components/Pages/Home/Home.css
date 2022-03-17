@@ -12,3 +12,7 @@ section h2::after {
     border-radius: 5px;
     border-bottom: solid 4px #f3b841;
 }
+
+.section-title {
+    margin: 25px 0;
+}

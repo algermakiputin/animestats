@@ -1,7 +1,18 @@
+/* 
+Color pallete
+1. #706f70 - dark white
+2. #212121 - lighter dark
+3. #e7ad3c - yellow
+4. #171717 - dark
+5. #ffffff - white
+*/
+
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500&display=swap');
 body {
     font-family: 'Rubik', Courier, monospace;
     background-color: #181818;
+    font-size: 0.875em;
+    line-height: 1.4em;
 }
 
 a {

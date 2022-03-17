@@ -1,5 +1,6 @@
 import React from "react";
 import PopularAnime from "../../Sections/Popular/PopularAnime";
+import RecentlyAdded from "../../Sections/RecentlyAdded/RecentlyAdded";
 import './Home.css';
 
 class HomePage extends React.Component {
@@ -9,9 +10,16 @@ class HomePage extends React.Component {
         return (
             <div className="container">
                 <section>
-                    <h2>Top Popular</h2>
+                    <h2 className="section-title">Top Popular</h2>
                     <PopularAnime />
                 </section>
+                <section>
+                    <h2 className="section-title">Recently Added</h2>
+                    <RecentlyAdded />
+                </section>
+                <br/>
+                <br/>
+                <br/>
             </div>
         )
     }
