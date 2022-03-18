@@ -4,6 +4,10 @@
     background-color: #181718;
 }
 
+.loading {
+    color: #fff;
+}
+
 .brand {
     position: absolute;
     float: left;

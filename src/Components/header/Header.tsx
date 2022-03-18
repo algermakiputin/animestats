@@ -3,8 +3,9 @@ import React, { useState } from "react";
 import { Link} from 'react-router-dom'
 import './Header.css';
 
-const search = async (query:any, setResult: Function) => {
+const search = async (query:any, setResult: Function, setLoading: Function) => {
     
+    setLoading(true)
     await axios.get('https://api.jikan.moe/v4/anime', {
             params: {
                 limit:10,
@@ -13,9 +14,11 @@ const search = async (query:any, setResult: Function) => {
             }).then(res => {
                 const result = res.data;
                 setResult(result);
+                setLoading(false);
             })
             .catch(err => {
                 console.log(err)
+                setLoading(false)
             })
 }
 
@@ -43,6 +46,7 @@ const Header = () => {
 
     const [query, setQuery] = useState(''); 
     const [show, setShow] = useState(true);
+    const [loading, setLoading] = useState(true);
     const [result, setResult] = useState([]);
     function searchBar() {
         
@@ -55,13 +59,13 @@ const Header = () => {
                         className="form-search" 
                         placeholder="search"
                         type="text" 
-                        onKeyUp={(e:any) => ( search(e.target.value, setResult)) }
+                        onKeyUp={(e:any) => ( search(e.target.value, setResult, setLoading)) }
                         onFocus={() => setShow(true)} 
                         onBlur={() => setTimeout(() => setShow(false), 200)}
                         />
                         <button type="submit"><img width={14} src={require('../../assets/search.png')} /></button>
                         {!show ? '' : <div id="results"> 
-                            <DisplayResults result={result} />
+                            {show && loading ? <span className="loading">Loading...</span> : <DisplayResults result={result} />}
                         </div>}
                 </div>
                 
