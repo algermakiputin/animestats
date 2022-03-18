@@ -1,0 +1,10 @@
+#footer .bottomrow {
+    text-align: center;
+}
+
+#footer .toprow {
+    text-align: center;
+    background-color: #212121;
+    color: #fff;
+    padding: 20px;
+}

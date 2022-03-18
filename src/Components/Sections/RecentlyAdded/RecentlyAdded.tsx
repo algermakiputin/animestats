@@ -84,7 +84,7 @@ class RecentlyAdded extends React.Component<any, any> {
                                 >
                                     <div className="carousel-column">
                                         <div className="featured-wrapper">
-                                            <span className="rating"><span className="star">&#10004;</span> Ongoing</span>
+                                            <span className="rating"><span className="star">&#10004;</span> New update</span>
                                             <img className="featured-image" src={image} />
                                             <span className="bottom-title">{title}</span>
                                         </div>
@@ -114,27 +114,29 @@ class RecentlyAdded extends React.Component<any, any> {
 
         return (
             <div>
-                <CarouselProvider
-                    naturalSlideWidth={500}
-                    naturalSlideHeight={180}
-                    totalSlides={this.state.totalSlides}
-                    playDirection="forward"
-                    touchEnabled={true}
-                    infinite={true}
-                    className="carousel-container"
-                    >
-                    <div className="carousel-buttons">
-                        <ButtonBack className="back-button">
-                            <img src={require('../../../assets/chevron.png')} />
-                        </ButtonBack>
-                        <ButtonNext className="next-button">
-                            <img src={require('../../../assets/chevron.png')} />
-                        </ButtonNext>
-                    </div>
-                    <Slider>
-                        { this.state.slides }
-                    </Slider> 
-                </CarouselProvider>
+                { this.state.error ? <p>Opps something went wrong please try again later</p> : (
+                    <CarouselProvider
+                        naturalSlideWidth={500}
+                        naturalSlideHeight={180}
+                        totalSlides={this.state.totalSlides}
+                        playDirection="forward"
+                        touchEnabled={true}
+                        infinite={true}
+                        className="carousel-container"
+                        >
+                        <div className="carousel-buttons">
+                            <ButtonBack className="back-button">
+                                <img src={require('../../../assets/chevron.png')} />
+                            </ButtonBack>
+                            <ButtonNext className="next-button">
+                                <img src={require('../../../assets/chevron.png')} />
+                            </ButtonNext>
+                        </div>
+                        <Slider>
+                            { this.state.slides }
+                        </Slider> 
+                    </CarouselProvider>
+                )}
             </div>
         );
     }

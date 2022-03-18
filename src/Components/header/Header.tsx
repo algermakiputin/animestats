@@ -9,7 +9,7 @@ class Header extends React.Component {
             <section className="navigation">
                 <div className="nav-container">
                     <div className="brand">
-                        <a href="#!">AnimaWeb.</a>
+                        <Link to="/">AnimaWeb.</Link>
                     </div>
                     <nav>
                         <div className="nav-mobile"><a id="navbar-toggle" href="#!"><span></span></a></div>

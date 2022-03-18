@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import './AnimeDetailsPage.css';
+import Statistics from "../../Sections/Statistics/Statistics";
 import axios from "axios";
  
 interface Anime {
@@ -9,7 +10,10 @@ interface Anime {
     synopsis: string,
     year: number,
     genres: [],
-    score: number
+    score: number,
+    status: string,
+    season:string,
+    otherTitle: string 
 }
 
 const getAnime = async(id:any, setAnime: Function, setGenres: Function ) => {
@@ -23,7 +27,10 @@ const getAnime = async(id:any, setAnime: Function, setGenres: Function ) => {
                         imageURL: result.images.webp.large_image_url,
                         year: result.year, 
                         score: result.score,
-                        genres: result.genres
+                        genres: result.genres,
+                        otherTitle: result.title_english,
+                        season:result.season,
+                        status: result.status 
                     });
  
                 })
@@ -46,17 +53,21 @@ const AnimeDetailsPage = () => {
 
     return (
         <div className="container">
-            <div className="page">
+            <div className="page" id="anime-details">
                 <div className="summary">
                     <div className="image-wrapper">
                         {anime ? <img src={anime.imageURL} /> : ''}
                     </div>
                     <div className="description">
-                        <h1>{anime ? anime.title : ''} 
+                        <h1>{anime?.title} 
                             <span className="year">&nbsp; {anime?.year}</span> 
                             <span className="score"> {anime?.score ? <span className="star">&#9733;</span> : ''} {anime?.score}</span>
                         </h1>
-                        <p>{anime? anime.synopsis : ''}</p> 
+                        <p>{anime?.synopsis}</p> 
+                        <p className="info"><span className="label">Release:</span> {anime?.year}</p>
+                        <p className="info"><span className="label">Status:</span> {anime?.status}</p>
+                        <p className="info"><span className="label">Season:</span> {anime?.season}</p>
+                        <p className="info"><span className="label">Other Title:</span> {anime?.otherTitle}</p>
                         <ul className="genres">
                             {anime?.genres.map((item:any, index) => { 
                                 return <li key={index}>{item.name}</li>
@@ -64,6 +75,8 @@ const AnimeDetailsPage = () => {
                         </ul>
                     </div>
                 </div>
+
+                <Statistics id={id} />
             </div>
         </div>
     )
