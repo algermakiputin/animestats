@@ -19,6 +19,11 @@ a {
     text-decoration: none;
 }
 
+#not-found h2 {
+    color: #fff;
+    padding: 40px 0;
+}
+
 .App-logo {
     height: 40vmin;
     pointer-events: none;

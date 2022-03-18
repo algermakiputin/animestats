@@ -4,6 +4,10 @@ table {
     margin-bottom: 40px;
 }
 
+.errorMessage {
+    color: #fff;
+}
+
 table td,
 table th {
     border: 1px solid #212121;

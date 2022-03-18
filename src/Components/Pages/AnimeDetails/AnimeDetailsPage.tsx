@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import './AnimeDetailsPage.css';
+import './AnimeDetailsPage.css'; 
 import Statistics from "../../Sections/Statistics/Statistics";
-import axios from "axios";
- 
+import axios from "axios";  
+
 interface Anime {
     title: string, 
     imageURL: string,
@@ -16,7 +16,7 @@ interface Anime {
     otherTitle: string 
 }
 
-const getAnime = async(id:any, setAnime: Function, setGenres: Function ) => {
+const getAnime = async(id:any, setAnime: Function, setGenres: Function, setError: Function ) => {
      
     await axios.get('https://api.jikan.moe/v4/anime/' + id)
                 .then(res => {  
@@ -35,7 +35,7 @@ const getAnime = async(id:any, setAnime: Function, setGenres: Function ) => {
  
                 })
                 .catch(err => {
-                    console.log(err)
+                    setError(true)
                 })
  
 }
@@ -44,37 +44,43 @@ const AnimeDetailsPage = () => {
 
     const {id} = useParams(); 
     const [anime, setAnime] = useState<Anime>(); 
+    const [error, setError] = useState(false); 
     const [genres, setGenres] = useState<Object>();  
 
     useEffect(() => {
-        getAnime(id, setAnime, setGenres); 
+        getAnime(id, setAnime, setGenres, setError); 
  
     },[]);
 
     return (
         <div className="container">
             <div className="page" id="anime-details">
-                <div className="summary">
-                    <div className="image-wrapper">
-                        {anime ? <img src={anime.imageURL} /> : ''}
-                    </div>
-                    <div className="description">
-                        <h1>{anime?.title} 
-                            <span className="year">&nbsp; {anime?.year}</span> 
-                            <span className="score"> {anime?.score ? <span className="star">&#9733;</span> : ''} {anime?.score}</span>
-                        </h1>
-                        <p>{anime?.synopsis}</p> 
-                        <p className="info"><span className="label">Release:</span> {anime?.year}</p>
-                        <p className="info"><span className="label">Status:</span> {anime?.status}</p>
-                        <p className="info"><span className="label">Season:</span> {anime?.season}</p>
-                        <p className="info"><span className="label">Other Title:</span> {anime?.otherTitle}</p>
-                        <ul className="genres">
-                            {anime?.genres.map((item:any, index) => { 
-                                return <li key={index}>{item.name}</li>
-                            })}
-                        </ul>
-                    </div>
-                </div>
+                {error ? <div className="not-found"><h1>Anime not found...</h1></div> : (
+                    !anime ? <h1 className="loader">Loading...</h1> : (
+                        <div className="summary">
+                            <div className="image-wrapper">
+                                {anime ? <img src={anime.imageURL} /> : ''}
+                            </div>
+                            <div className="description">
+                                <h1>{anime?.title} 
+                                    <span className="year">&nbsp; {anime?.year}</span> 
+                                    <span className="score"> {anime?.score ? <span className="star">&#9733;</span> : ''} {anime?.score}</span>
+                                </h1>
+                                <p>{anime?.synopsis}</p> 
+                                <p className="info"><span className="label">Release:</span> {anime?.year}</p>
+                                <p className="info"><span className="label">Status:</span> {anime?.status}</p>
+                                <p className="info"><span className="label">Season:</span> {anime?.season}</p>
+                                <p className="info"><span className="label">Other Title:</span> {anime?.otherTitle}</p>
+                                <ul className="genres">
+                                    {anime?.genres.map((item:any, index) => { 
+                                        return <li key={index}>{item.name}</li>
+                                    })}
+                                </ul>
+                            </div>
+                        </div>
+                    )
+                )
+                }   
 
                 <Statistics id={id} />
             </div>

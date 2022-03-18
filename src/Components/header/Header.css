@@ -210,3 +210,39 @@ form button img {
     vertical-align: middle;
     border-left: none;
 }
+
+form {
+    position: relative;
+}
+
+#autocomplete {
+    position: relative;
+}
+
+#autocomplete #results {
+    position: absolute;
+    left: 0;
+    top: 44px;
+    width: 100%;
+    z-index: 1000;
+    background-color: #171717;
+}
+
+#autocomplete #results ul {
+    list-style: none;
+    padding: 0;
+    max-height: 100px;
+    overflow: auto;
+}
+
+#autocomplete #results ul li a {
+    background-color: transparent;
+    padding: 5px 10px;
+    line-height: 24px;
+    width: 100%;
+    color: #fff;
+}
+
+#autocomplete #results ul li a:hover {
+    color: #e7ad3c;
+}

@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import './RecentlyAdded.css';
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
+import PlaceholderLoading from 'react-placeholder-loading';
 import { Link } from 'react-router-dom';
 
 class RecentlyAdded extends React.Component<any, any> {
@@ -65,6 +66,35 @@ class RecentlyAdded extends React.Component<any, any> {
         return slides;
     }
 
+    placeHolderLoading() {
+
+        return (
+            <div className="recently-added">
+                <PlaceholderLoading 
+                    shape="rect" 
+                    width="100%" 
+                    height={180}
+                    colorStart="#212121"
+                    colorEnd="#171717"
+                />
+                <PlaceholderLoading 
+                    shape="rect" 
+                    width="100%" 
+                    height={180}
+                    colorStart="#212121"
+                    colorEnd="#171717"
+                />
+                <PlaceholderLoading 
+                    shape="rect" 
+                    width="100%" 
+                    height={180}
+                    colorStart="#212121"
+                    colorEnd="#171717"
+                />
+            </div>
+        )
+    }
+
     createSlides(formattedResult:any) {
 
         let slides = []; 
@@ -115,27 +145,29 @@ class RecentlyAdded extends React.Component<any, any> {
         return (
             <div>
                 { this.state.error ? <p>Opps something went wrong please try again later</p> : (
-                    <CarouselProvider
-                        naturalSlideWidth={500}
-                        naturalSlideHeight={180}
-                        totalSlides={this.state.totalSlides}
-                        playDirection="forward"
-                        touchEnabled={true}
-                        infinite={true}
-                        className="carousel-container"
-                        >
-                        <div className="carousel-buttons">
-                            <ButtonBack className="back-button">
-                                <img src={require('../../../assets/chevron.png')} />
-                            </ButtonBack>
-                            <ButtonNext className="next-button">
-                                <img src={require('../../../assets/chevron.png')} />
-                            </ButtonNext>
-                        </div>
-                        <Slider>
-                            { this.state.slides }
-                        </Slider> 
-                    </CarouselProvider>
+                    !this.state.slides.length ? this.placeHolderLoading() : (
+                        <CarouselProvider
+                            naturalSlideWidth={500}
+                            naturalSlideHeight={95}
+                            totalSlides={this.state.totalSlides}
+                            playDirection="forward"
+                            touchEnabled={true}
+                            infinite={true}
+                            className="carousel-container"
+                            >
+                            <div className="carousel-buttons">
+                                <ButtonBack className="back-button">
+                                    <img src={require('../../../assets/chevron.png')} />
+                                </ButtonBack>
+                                <ButtonNext className="next-button">
+                                    <img src={require('../../../assets/chevron.png')} />
+                                </ButtonNext>
+                            </div>
+                            <Slider>
+                                { this.state.slides }
+                            </Slider> 
+                        </CarouselProvider>
+                    )
                 )}
             </div>
         );

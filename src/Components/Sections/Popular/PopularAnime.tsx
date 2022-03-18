@@ -1,11 +1,10 @@
 import React from "react"; 
 import axios from "axios"; 
 import { CarouselProvider, Slider, Slide, ButtonBack, ButtonNext } from 'pure-react-carousel';
-import PlaceholderLoading from 'react-placeholder-loading'
+import PlaceholderLoading from 'react-placeholder-loading';
 import 'pure-react-carousel/dist/react-carousel.es.css';
 import './PopularAnime.css';
-import { Link } from 'react-router-dom';
-import chevron from '../../../assets/chevron.png'
+import { Link } from 'react-router-dom'; 
 
 class PopularAnime extends React.Component <any, any> {
 
@@ -123,35 +122,35 @@ class PopularAnime extends React.Component <any, any> {
                 <PlaceholderLoading 
                     shape="rect" 
                     width="100%" 
-                    height={250}
+                    height={260}
                     colorStart="#212121"
                     colorEnd="#171717"
                 />
                 <PlaceholderLoading 
                     shape="rect" 
                     width="100%" 
-                    height={250}
+                    height={260}
                     colorStart="#212121"
                     colorEnd="#171717"
                 />
                 <PlaceholderLoading 
                     shape="rect" 
                     width="100%" 
-                    height={250}
+                    height={260}
                     colorStart="#212121"
                     colorEnd="#171717"
                 />
                 <PlaceholderLoading 
                     shape="rect" 
                     width="100%" 
-                    height={250}
+                    height={260}
                     colorStart="#212121"
                     colorEnd="#171717"
                 />
                 <PlaceholderLoading 
                     shape="rect" 
                     width="100%" 
-                    height={250}
+                    height={260}
                     colorStart="#212121"
                     colorEnd="#171717"
                 />
