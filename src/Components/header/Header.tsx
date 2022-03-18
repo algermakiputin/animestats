@@ -6,6 +6,7 @@ import './Header.css';
 const search = async (query:any, setResult: Function, setLoading: Function) => {
     
     setLoading(true)
+
     await axios.get('https://api.jikan.moe/v4/anime', {
             params: {
                 limit:10,
@@ -23,9 +24,6 @@ const search = async (query:any, setResult: Function, setLoading: Function) => {
 }
 
 const DisplayResults = (result:any) => {
-
-    if (!result)
-        alert(0)
 
     var elements = [];
     const rows = result.result.data;
@@ -45,9 +43,10 @@ const DisplayResults = (result:any) => {
 const Header = () => {
 
     const [query, setQuery] = useState(''); 
-    const [show, setShow] = useState(true);
-    const [loading, setLoading] = useState(true);
+    const [show, setShow] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [result, setResult] = useState([]);
+ 
     function searchBar() {
         
         return <form onSubmit={(e) => {
@@ -65,7 +64,7 @@ const Header = () => {
                         />
                         <button type="submit"><img width={14} src={require('../../assets/search.png')} /></button>
                         {!show ? '' : <div id="results"> 
-                            {show && loading ? <span className="loading">Loading...</span> : <DisplayResults result={result} />}
+                            {show && loading ? <span className="loading"> &nbsp; Loading...</span> : <DisplayResults result={result} />}
                         </div>}
                 </div>
                 
